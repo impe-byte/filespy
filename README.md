@@ -36,7 +36,7 @@
 ### 1. Fork / Clone
 
 ```bash
-git clone https://github.com/TUO_USERNAME/filespy.git
+git clone https://github.com/impe-byte/filespy.git
 cd filespy
 ```
 
