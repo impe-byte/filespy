@@ -1,0 +1,42 @@
+{
+  "app": {
+    "version": "v1.0",
+    "title": "Rilevatore di Magic Byte",
+    "description": "Identifica l'estensione originale di qualsiasi file analizzando i magic bytes — la firma binaria nei primi byte. Supporto speciale per email .msg e .eml tramite OLE2 deep scan.",
+    "badges": {
+      "formats": "55+ formati",
+      "local": "100% locale",
+      "noupload": "nessun upload",
+      "ole2": "OLE2 deep scan",
+      "csv": "export CSV"
+    },
+    "footer": "impe-byte FileSpy — nessun dato inviato a server",
+    "github": "GitHub ↗"
+  },
+  "actions": {
+    "analyzing": "Analisi in corso...",
+    "results": "Risultati",
+    "restart": "✕ Ricomincia",
+    "exportCsv": "⬇ Esporta CSV"
+  },
+  "dropzone": {
+    "drag": "Trascina i file qui",
+    "drop": "Rilascia qui",
+    "click": "oppure clicca per selezionare · supporto multiplo file",
+    "formats": ".msg · .eml · .pdf · .jpg · .zip · .doc e oltre 50 formati"
+  },
+  "results": {
+    "unknown": "Non riconosciuto",
+    "matches": "Corrispondenze",
+    "magicBytes": "Magic bytes (hex)",
+    "analyzed": "{{count}} file analizzati",
+    "identified": "{{count}} identificati",
+    "notRecognized": "{{count}} non riconosciuti",
+    "table": {
+      "file": "File",
+      "ext": "Estensione",
+      "desc": "Descrizione",
+      "size": "Dimensione"
+    }
+  }
+}

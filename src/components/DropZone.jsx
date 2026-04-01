@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function DropZone({ onFiles }) {
+  const { t } = useTranslation()
   const inputRef = useRef(null)
   const [dragging, setDragging] = useState(false)
 
@@ -17,12 +19,12 @@ export default function DropZone({ onFiles }) {
       onDragLeave={() => setDragging(false)}
       onDrop={e => { e.preventDefault(); setDragging(false); handle(e.dataTransfer.files) }}
       style={{
-        border: `1.5px dashed ${dragging ? 'var(--accent)' : 'rgba(255,255,255,0.15)'}`,
+        border: `1.5px dashed ${dragging ? 'var(--accent)' : 'var(--border)'}`,
         borderRadius: 'var(--radius)',
         padding: '3.5rem 2rem',
         textAlign: 'center',
         cursor: 'pointer',
-        background: dragging ? 'rgba(232,255,90,0.04)' : 'rgba(255,255,255,0.02)',
+        background: dragging ? 'var(--bg-hover)' : 'var(--bg-card)',
         transition: 'all 0.2s',
         position: 'relative',
         overflow: 'hidden',
@@ -50,20 +52,20 @@ export default function DropZone({ onFiles }) {
         {dragging ? '⬇' : '📂'}
       </div>
       <div style={{
-        fontFamily: 'var(--serif)',
-        fontStyle: 'italic',
+        fontFamily: 'var(--sans)',
+        fontWeight: 600,
         fontSize: 22,
         color: dragging ? 'var(--accent)' : 'var(--text-primary)',
         marginBottom: 8,
         transition: 'color 0.2s',
       }}>
-        {dragging ? 'Rilascia qui' : 'Trascina i file'}
+        {dragging ? t('dropzone.drop') : t('dropzone.drag')}
       </div>
       <div style={{ color: 'var(--text-secondary)', fontSize: 13 }}>
-        oppure clicca per selezionare · supporto multiplo file
+        {t('dropzone.click')}
       </div>
       <div style={{ color: 'var(--text-tertiary)', fontSize: 11, marginTop: 8, fontFamily: 'var(--mono)' }}>
-        .msg · .eml · .pdf · .jpg · .zip · .doc e oltre 50 formati
+        {t('dropzone.formats')}
       </div>
     </div>
   )

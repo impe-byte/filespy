@@ -1,142 +1,53 @@
-# FileSpy — Magic Byte File Detector
+# FileSpy by impe-byte
 
-> Identifica l'estensione originale di qualsiasi file analizzando i *magic bytes* — la firma binaria nei primi byte del file.
+[![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react&logoColor=black)](#)
+[![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?logo=vite&logoColor=white)](#)
+[![Deploy on Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?logo=vercel&logoColor=white)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#)
 
-**🔒 100% privato** — tutto avviene nel browser, nessun file viene mai inviato a server.
+> **Where IT Infrastructure meets Intelligent Automation** — *impe-byte*
 
----
+FileSpy is a minimalist, professional, 100% client-side web application designed to reliably identify files using "Magic Bytes" analysis.
 
-## ✨ Funzionalità
+## Value Proposition
+- **Privacy First:** 100% local processing. Files never leave your machine; there are zero server uploads.
+- **Accuracy:** Circumvents manipulated file extensions by reading the actual binary signatures.
+- **Enterprise Ready:** Clean, minimal UI aligned with the **impe-byte** brand identity. Deep Navy and Signal Blue aesthetics.
+- **Multilingual Support:** Auto-detects user locale (EN/IT) to instantly adapt the interface.
 
-- **Magic bytes analysis** — confronta i primi byte del file con un database di 55+ firme note
-- **OLE2 deep scan** — per i file Compound Document (`.msg`, `.doc`, `.xls`, `.ppt`) analizza la struttura interna per distinguere il tipo esatto
-- **Rilevamento email** — `.msg` (Outlook), `.eml`, `.mbox`, `.pst/.ost`
-- **Analisi testuale euristica** — per file di testo senza magic bytes (JSON, Python, JS, HTML, CSS...)
-- **Multi-file** — analizza più file contemporaneamente con progress bar
-- **Export CSV** — scarica i risultati in formato tabellare
+## Core Features
+1. **Magic Bytes Detection:** Compares the hex dumps of the first few bytes against a robust database of over 55+ file formats.
+2. **OLE2 Deep Scan Architecture:** 
+   Our unique engine doesn't just parse standard headers. For Microsoft Office and Email formats (`.msg`), FileSpy implements a Deep Scan mechanism capable of penetrating OLE2 (Compound File Binary Format) structures to determine the exact sub-type of the payload with high precision.
+3. **Batch Analysis:** Drag and drop folders or multiple files simultaneously.
+4. **Export to CSV:** Obtain audit-ready format reports.
 
-## 📦 Formati supportati
+## Supported Formats
+| Category | Formats |
+| --- | --- |
+| **Documents / Office** | `pdf`, `doc`, `docx`, `xls`, `xlsx`, `ppt`, `pptx` |
+| **Emails** | `eml`, `msg` (Full OLE2 parse) |
+| **Images** | `jpeg`, `png`, `gif`, `webp`, `bmp`, `ico`, `tiff`, `heic` |
+| **Media** | `mp4`, `mkv`, `avi`, `mp3`, `flac`, `wav`, `ogg` |
+| **Archives** | `zip`, `rar`, `7z`, `tar`, `gz` |
+| **Executables** | `exe`, `elf`, `macho`, `dll` |
 
-| Categoria | Formati |
-|-----------|---------|
-| **Mail** | `.msg` `.eml` `.mbox` `.pst` `.ost` |
-| **Immagini** | `.jpg` `.png` `.gif` `.bmp` `.webp` `.tiff` `.ico` `.psd` `.heic` |
-| **Documenti** | `.pdf` `.doc` `.xls` `.ppt` `.docx` `.xlsx` `.pptx` `.rtf` `.xml` `.html` |
-| **Archivi** | `.zip` `.rar` `.7z` `.gz` `.bz2` `.xz` `.iso` |
-| **Video** | `.mp4` `.mkv` `.avi` `.flv` `.wmv` |
-| **Audio** | `.mp3` `.wav` `.flac` `.ogg` `.aac` |
-| **Eseguibili** | `.exe` `.dll` `.elf` `.class` `.wasm` |
-| **Database** | `.sqlite` |
-| **Font** | `.ttf` `.otf` `.woff` `.woff2` |
+## Technical Explanation: Magic Bytes Engine
+Most operating systems map files to specific applications based merely on their string extension (e.g. `.pdf`). FileSpy bypasses this weak association by directly reading the file header stream using the `FileReader` API and `Uint8Array`.
+Every file contains a magic number (or file signature) at offset `0x00`. For example, all `PDF` files start with `25 50 44 46` (`%PDF`). The analytic engine chunks the beginning of the binary stream, converts it into hex variables, and matches those against an internal multi-layered decision tree, resulting in high-performance identification that is immune to basic spoofing.
 
----
-
-## 🚀 Deploy rapido su Vercel
-
-### 1. Fork / Clone
-
+## Local Development
+Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/impe-byte/filespy.git
 cd filespy
-```
-
-### 2. Installa dipendenze
-
-```bash
 npm install
-```
-
-### 3. Sviluppo locale
-
-```bash
 npm run dev
-# → http://localhost:5173
 ```
 
-### 4. Deploy su Vercel
-
-**Via CLI:**
+## Deployment
+FileSpy is fully optimized to be built as a static site.
 ```bash
-npm i -g vercel
-vercel
-# segui le istruzioni interattive
+npm run build
 ```
-
-**Via GitHub (consigliato):**
-1. Pusha il repo su GitHub
-2. Vai su [vercel.com](https://vercel.com) → **New Project**
-3. Importa il repo GitHub
-4. Vercel rileva automaticamente Vite → clicca **Deploy**
-5. ✅ Done — URL pubblico in 60 secondi
-
----
-
-## 🛠 Sviluppo
-
-```
-filespy/
-├── src/
-│   ├── lib/
-│   │   ├── signatures.js   # Database magic bytes (55+ firme)
-│   │   └── analyzer.js     # Logica analisi + OLE2 deep scan
-│   ├── components/
-│   │   ├── DropZone.jsx    # Drag & drop area
-│   │   ├── ResultCard.jsx  # Card risultato singolo file
-│   │   └── MultiResultTable.jsx  # Tabella multi-file + CSV export
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-├── public/
-│   └── favicon.svg
-├── index.html
-├── vite.config.js
-├── vercel.json
-└── package.json
-```
-
-### Aggiungere nuove firme
-
-Apri `src/lib/signatures.js` e aggiungi alla lista `SIGNATURES`:
-
-```js
-{
-  ext: '.xyz',
-  mime: 'application/x-xyz',
-  bytes: [0xAB, 0xCD, 0xEF],   // magic bytes (hex)
-  desc: 'Descrizione formato',
-  category: 'document',         // mail|image|document|archive|video|audio|executable|database|font|text
-}
-```
-
-Per firme con offset o verifica extra:
-```js
-{
-  ext: '.webp',
-  bytes: [0x52,0x49,0x46,0x46],       // "RIFF" a offset 0
-  extra: { offset: 8, bytes: [0x57,0x45,0x42,0x50] },  // "WEBP" a offset 8
-  ...
-}
-```
-
----
-
-## 🧠 Come funziona
-
-### Magic bytes
-Ogni formato di file ha una "firma" nei primi byte — indipendente dall'estensione. Ad esempio:
-- `FF D8 FF` → JPEG
-- `89 50 4E 47` → PNG
-- `D0 CF 11 E0` → OLE2 Compound Document
-
-### OLE2 Deep Scan
-I file Office legacy (`.doc`, `.xls`, `.ppt`) e le email Outlook (`.msg`) condividono lo stesso magic byte OLE2. FileSpy analizza la struttura interna del Compound Document leggendo i directory entry e cercando stream-name caratteristici:
-- `__properties_version1.0` + `__nameid_version1.0` → **`.msg`**
-- `WordDocument` → **`.doc`**
-- `Workbook` → **`.xls`**
-- `PowerPoint Document` → **`.ppt`**
-
----
-
-## 📄 Licenza
-
-MIT — libero uso, modifica e redistribuzione.
+The resulting `dist/` directory can be easily deployed via Vercel, Netlify, or any static file-server.

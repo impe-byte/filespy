@@ -1,0 +1,42 @@
+{
+  "app": {
+    "version": "v1.0",
+    "title": "Magic Byte File Detector",
+    "description": "Identify the original extension of any file by analyzing its magic bytes — the binary signature in the file header. Special support for .msg and .eml emails via OLE2 deep scan.",
+    "badges": {
+      "formats": "55+ formats",
+      "local": "100% local",
+      "noupload": "no upload",
+      "ole2": "OLE2 deep scan",
+      "csv": "CSV export"
+    },
+    "footer": "impe-byte FileSpy — no data sent to servers",
+    "github": "GitHub ↗"
+  },
+  "actions": {
+    "analyzing": "Analyzing...",
+    "results": "Results",
+    "restart": "✕ Restart",
+    "exportCsv": "⬇ Export CSV"
+  },
+  "dropzone": {
+    "drag": "Drag files here",
+    "drop": "Drop here",
+    "click": "or click to select · supports multiple files",
+    "formats": ".msg · .eml · .pdf · .jpg · .zip · .doc and 50+ more formats"
+  },
+  "results": {
+    "unknown": "Unknown",
+    "matches": "Matches",
+    "magicBytes": "Magic bytes (hex)",
+    "analyzed": "{{count}} files analyzed",
+    "identified": "{{count}} identified",
+    "notRecognized": "{{count}} not recognized",
+    "table": {
+      "file": "File",
+      "ext": "Extension",
+      "desc": "Description",
+      "size": "Size"
+    }
+  }
+}
