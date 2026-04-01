@@ -182,7 +182,7 @@ export default function App() {
           </span>
         </div>
         <div style={{ display: 'flex', gap: 16 }}>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, fontFamily: 'var(--mono)', color: 'var(--text-tertiary)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'var(--accent)'} onMouseLeave={e => e.target.style.color = 'var(--text-tertiary)'}>
+          <a href="https://github.com/impe-byte/filespy" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, fontFamily: 'var(--mono)', color: 'var(--text-tertiary)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'var(--accent)'} onMouseLeave={e => e.target.style.color = 'var(--text-tertiary)'}>
             {t('app.github')}
           </a>
         </div>
